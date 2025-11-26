@@ -11,6 +11,21 @@ import org.apache.commons.io.FileUtils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
+//Coverage Criteria
+//Can sign up, sign in and log out of a user account
+//Can see a list of gigs with band details, dates and locations
+//Can filter by location and see a map of the gig location
+//Can filter gigs based on chosen dates
+//Past gigs should be clearly labelled
+//Can see all gigs from a specific band
+//Can book a number of tickets to a specific gig that's not yet been booked
+//Can see a list of the accounts booked gigs
+//Can cancel a booking
+//Can read information about the site
+//API providing access to gigs, bookings,accounts etc (returned in JSON)
+
+
 public class Giga_Tests {
     private static ChromeDriver driver;
 
