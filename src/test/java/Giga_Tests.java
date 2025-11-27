@@ -36,41 +36,44 @@ public class Giga_Tests {
     }
 
     @Test
-    void topMenuBarWorks() throws Exception{
-        GigaPOM test = new GigaPOM(driver);
-        test.navigate();
-        assertEquals("Welcome to Giga",test.getTitle());
+    void testTopMenuBarWorks() throws Exception{
+        GigaPOM page = new GigaPOM(driver);
+        page.navigate();
+        assertEquals("Welcome to Giga",page.getTitle());
 
-        test.clickLinktext("Gigs");
-        assertEquals("Gigs",test.getTitle());
-
-        test.SignOut(); //need for WHOLE test, dont need for single test (refactor
-        test.clickLinktext("Log In");
-        assertEquals("Log In",test.getTitle());
+        page.clickLinktext("Gigs");
+        assertEquals("Gigs",page.getTitle());
 
 
-        test.clickLinktext("About");
-        assertEquals("About Giga",test.getTitle());
+        if (!page.isLinkTextPresent("Log In")) {
+            page.SignOut();
+        }
+        page.clickLinktext("Log In");
+        assertEquals("Log In",page.getTitle());
 
-        test.clickLinktext("About");
-        assertEquals("About Giga",test.getTitle());
 
-        test.clickLinktext("Home");
-        assertEquals("Welcome to Giga",test.getTitle());
+        page.clickLinktext("About");
+        assertEquals("About Giga",page.getTitle());
 
-        test.clickLinktext("Account");
-        assertEquals("401 Unauthorised",test.getTitle());
+        page.clickLinktext("About");
+        assertEquals("About Giga",page.getTitle());
+
+        page.clickLinktext("Home");
+        assertEquals("Welcome to Giga",page.getTitle());
+
+        page.clickLinktext("Account");
+        assertEquals("401 Unauthorised",page.getTitle());
     }
 
 
     @Test
     /// sometimes fails if no thread.sleep
     /// can csv file different inputs for username and password
-    void signInandOut()throws Exception{
+    void testSignInandOut()throws Exception{
         GigaPOM test = new GigaPOM(driver);
 
         test.SignIn("username","password");
-        Thread.sleep(1000);
+        Thread.sleep(500);
         assertEquals("Welcome to Giga",test.getTitle());
 
         test.clickLinktext("Account");
@@ -87,24 +90,22 @@ public class Giga_Tests {
 
     @Test
     void signUp(){
-
     }
 
     @Test
-    ///waiting to automate more bookings until a delete booking func is possible, rn just manually reseeding on terminal
+        ///account has to have NO bookings for the gig you attempt to book for
     void bookingTickets() throws Exception{
         GigaPOM test = new GigaPOM(driver);
         test.navigate();
         test.SignIn("username","password");
+        Thread.sleep(1000);
         test.clickLinktext("Gigs");
 
         Thread.sleep(1000);
-        takeScreenshot(driver, "input0.png");
 
-        test.bookTickets("2", "7"); //need to refactor for when you need to scroll to reach element
-        takeScreenshot(driver, "input.png");
+        test.bookTickets("2", "6"); //need to refactor for when you need to scroll to reach element
         driver.findElement(By.xpath("//input[@value='Book gig']")).click();
-        takeScreenshot(driver, "bookings.png");
+        driver.findElement(By.cssSelector(".cancel > a")).click();
         //need to assert that the gig i booked, is the gig that shows in booking list
         //remove tickets at end to repeat test
     }

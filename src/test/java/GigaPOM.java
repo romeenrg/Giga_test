@@ -1,7 +1,4 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -48,4 +45,12 @@ public class GigaPOM {
 
     }
 
+    public boolean isLinkTextPresent(String linkText) {
+        try {
+            driver.findElement(By.linkText(linkText));
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
 }
