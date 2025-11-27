@@ -34,6 +34,15 @@ public class GigaPOM {
 
     }
 
+    public void Signup(String text1, String text2){
+        driver.get("http://127.0.0.1:5001/login");
+        driver.findElement(By.linkText("Sign Up")).click();
+        driver.findElement(By.name("username")).sendKeys(text1);
+        driver.findElement(By.name("password")).sendKeys(text2);
+        driver.findElement(By.name("confirm_password")).sendKeys(text2);
+        driver.findElement(By.xpath("//input[@value='Sign up']")).click();
+    }
+
     public void SignOut(){
         driver.findElement(By.linkText("Log Out")).click();
     }

@@ -10,6 +10,7 @@ import org.openqa.selenium.OutputType;
 import org.apache.commons.io.FileUtils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 //Coverage Criteria
@@ -89,7 +90,15 @@ public class Giga_Tests {
     }
 
     @Test
-    void signUp(){
+    /// test will vary for unique usernames
+    /// is there a way to delete users
+    /// can csv for different combinations
+    /// might need to add third argument for confirmed password?
+    void testSignUp(){
+        GigaPOM test = new GigaPOM(driver);
+        test.Signup("Romeengrg", "1230Password!");
+        assertEquals("Log In",test.getTitle());
+        assertTrue(driver.getCurrentUrl().contains("signup_message=True"));
     }
 
     @Test
