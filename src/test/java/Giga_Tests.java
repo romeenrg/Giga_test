@@ -15,17 +15,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 //Coverage Criteria
 ///Can sign in and log out of a user account
-// Can sign up
-//Can see a list of gigs with band details, dates and locations
+/// Can sign up
+//Can see a list of gigs with band details, dates and locations (manual?)
 //Can filter by location and see a map of the gig location
 //Can filter gigs based on chosen dates
-//Past gigs should be clearly labelled
-//Can see all gigs from a specific band
+//Past gigs should be clearly labelled (manual?)
+//Can see all gigs from a specific band (manual?)
 ///Can book a number of tickets to a specific gig that's not yet been booked
-//Can see a list of the accounts booked gigs
-//Can cancel a booking
-//Can read information about the site
-//API providing access to gigs, bookings,accounts etc (returned in JSON)
+///Can see a list of the accounts booked gigs (tested for a single booking, manual for list or refactoring?)
+///Can cancel a booking
+///Can read information about the site (tested there is a page/button for it, information present manually tested?)
+//API providing access to gigs, bookings,accounts etc (returned in JSON) (manual?)
 
 
 public class Giga_Tests {
@@ -69,7 +69,7 @@ public class Giga_Tests {
 
     @Test
     /// sometimes fails if no thread.sleep
-    /// can csv file different inputs for username and password
+    ///  can do parameterised test
     void testSignInandOut()throws Exception{
         GigaPOM test = new GigaPOM(driver);
 
@@ -92,7 +92,7 @@ public class Giga_Tests {
     @Test
     /// test will vary for unique usernames
     /// is there a way to delete users
-    /// can csv for different combinations
+    ///  can do parameterised test
     /// might need to add third argument for confirmed password?
     void testSignUp() throws Exception{
         GigaPOM test = new GigaPOM(driver);
@@ -129,16 +129,19 @@ public class Giga_Tests {
     }
 
     @Test
-    void dateRange(){
+    ///  assert only gigs within the two dates shown
+    ///  assert only valid date inputs allowed
+    ///  can do parameterised test
+    void testDateFilter(){
 
     }
 
+    @Test
+    /// assert only all/London/Cambridge gigs shown
 
+    void testLocationFilter(){
 
-
-
-
-
+    }
 
 
     @AfterAll
