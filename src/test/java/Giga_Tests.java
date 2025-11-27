@@ -13,13 +13,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 //Coverage Criteria
-//Can sign up, sign in and log out of a user account
+///Can sign in and log out of a user account
+// Can sign up
 //Can see a list of gigs with band details, dates and locations
 //Can filter by location and see a map of the gig location
 //Can filter gigs based on chosen dates
 //Past gigs should be clearly labelled
 //Can see all gigs from a specific band
-//Can book a number of tickets to a specific gig that's not yet been booked
+///Can book a number of tickets to a specific gig that's not yet been booked
 //Can see a list of the accounts booked gigs
 //Can cancel a booking
 //Can read information about the site
@@ -35,7 +36,7 @@ public class Giga_Tests {
     }
 
     @Test
-    void topMenuBarWorks(){
+    void topMenuBarWorks() throws Exception{
         GigaPOM test = new GigaPOM(driver);
         test.navigate();
         assertEquals("Welcome to Giga",test.getTitle());
@@ -43,8 +44,10 @@ public class Giga_Tests {
         test.clickLinktext("Gigs");
         assertEquals("Gigs",test.getTitle());
 
+        test.SignOut(); //need for WHOLE test, dont need for single test (refactor
         test.clickLinktext("Log In");
         assertEquals("Log In",test.getTitle());
+
 
         test.clickLinktext("About");
         assertEquals("About Giga",test.getTitle());
@@ -96,12 +99,14 @@ public class Giga_Tests {
         test.clickLinktext("Gigs");
 
         Thread.sleep(1000);
+        takeScreenshot(driver, "input0.png");
 
-        test.bookTickets("2", "7");
+        test.bookTickets("2", "7"); //need to refactor for when you need to scroll to reach element
         takeScreenshot(driver, "input.png");
         driver.findElement(By.xpath("//input[@value='Book gig']")).click();
         takeScreenshot(driver, "bookings.png");
-
+        //need to assert that the gig i booked, is the gig that shows in booking list
+        //remove tickets at end to repeat test
     }
 
     @Test

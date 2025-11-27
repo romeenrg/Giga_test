@@ -43,8 +43,8 @@ public class GigaPOM {
 
     public void bookTickets(String position , String num){
 
-        driver.findElement(By.xpath("(//a[contains(text(),'More details & booking')])[" + position +"]")).click();
-        driver.findElement(By.name("ticket_count")).sendKeys(num);
+        driver.findElement(By.xpath("(//a[contains(text(),'More details & booking')])[" + position + "]")).click();
+        driver.findElement(By.name("ticket_count")).sendKeys(num); ///LOCATER CHANGED
 
     }
 
