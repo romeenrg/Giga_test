@@ -94,16 +94,18 @@ public class Giga_Tests {
     /// is there a way to delete users
     /// can csv for different combinations
     /// might need to add third argument for confirmed password?
-    void testSignUp(){
+    void testSignUp() throws Exception{
         GigaPOM test = new GigaPOM(driver);
         test.Signup("Romeengrg", "1230Password!");
+        Thread.sleep(500);
         assertEquals("Log In",test.getTitle());
         assertTrue(driver.getCurrentUrl().contains("signup_message=True"));
     }
 
     @Test
         ///account has to have NO bookings for the gig you attempt to book for
-    void bookingTickets() throws Exception{
+        /// can assert for single bookings but will need to refactor for multiple?
+    void bookingTicketsandCancelling() throws Exception{
         GigaPOM test = new GigaPOM(driver);
         test.navigate();
         test.SignIn("username","password");
@@ -114,7 +116,14 @@ public class Giga_Tests {
 
         test.bookTickets("2", "6"); //need to refactor for when you need to scroll to reach element
         driver.findElement(By.xpath("//input[@value='Book gig']")).click();
+        takeScreenshot(driver, "Ticket.png");
+
+         assertEquals(Boolean.TRUE, test.isBookingPresent());
         driver.findElement(By.cssSelector(".cancel > a")).click();
+        assertEquals(Boolean.FALSE, test.isBookingPresent());
+
+
+
         //need to assert that the gig i booked, is the gig that shows in booking list
         //remove tickets at end to repeat test
     }

@@ -61,5 +61,19 @@ public class GigaPOM {
         } catch (NoSuchElementException e) {
             return false;
         }
+
+
     }
+
+    public boolean isBookingPresent() {
+        try {
+            driver.findElement(By.xpath("//p[contains(.,'6 tickets for Portishead @ Brixton Academy, London on 2025-12-08 19:30')]"));
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+
+
 }
