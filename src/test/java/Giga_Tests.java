@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-//Coverage Criteria
+//Coverage Criteria - User Stories
 ///Can sign in and log out of a user account
 /// Can sign up
 //Can see a list of gigs with band details, dates and locations (manual?)
